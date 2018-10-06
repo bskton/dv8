@@ -1,8 +1,26 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-body {
+@import "./sass/variables";
+
+*,
+*::after,
+*::before {
   margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
   font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #777;
+  box-sizing: border-box;
 }
 
 a {
