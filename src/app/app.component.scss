@@ -8,5 +8,8 @@ mat-sidenav-container {
 
 mat-toolbar {
   display: flex;
-  flex-direction: row-reverse;
+}
+
+.logo {
+  flex-grow: 1;
 }
