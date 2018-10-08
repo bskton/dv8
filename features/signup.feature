@@ -12,6 +12,14 @@ Feature: Signup
     And I see "Your account has been successfully created"
     And I see "Please check your e-mail and activate your account"
 
+  Scenario: Log out
+    Given I am logged in
+    And I am on page "profile"
+    When I press menu button
+    And I press link "Log Out"
+    Then I am logged out
+    And I am on page "signin"
+
   Scenario: Show error message if email was already used by another user
     Given a user with email "user@mail.domain" already exists
     And I am on page "signup"
