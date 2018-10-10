@@ -5,7 +5,7 @@
         <mat-icon>face</mat-icon>
         <span>Sign Up</span>
       </a>
-      <a *ngIf="isAuth" mat-list-item (click)="sidenav.close()">
+      <a *ngIf="isAuth" mat-list-item (click)="onLogout()">
         <mat-icon>exit_to_app</mat-icon>
         <span>Log Out</span>
       </a>

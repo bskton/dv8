@@ -1,4 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material';
 
 import { AuthService } from './auth/auth.service';
 import { Subscription } from 'rxjs';
@@ -9,6 +10,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ["./app.component.scss"]
 })
 export class AppComponent implements OnInit, OnDestroy {
+  @ViewChild('sidenav') sidenav: MatSidenav;
+
   isAuth = false;
 
   subscription: Subscription;
@@ -25,5 +28,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  onLogout() {
+    this.sidenav.close();
+    this.authService.logout();
   }
 }
