@@ -9,10 +9,18 @@ exports.config = {
     './src/**/*.e2e-spec.ts'
   ],
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'chrome',
+    'chromeOptions': {
+      'args': [
+        '--headless',
+        '--disable-gpu',
+        // Without a remote debugging port, Google Chrome exits immediately.
+        '--remote-debugging-port=9222',
+      ]
+    }
   },
   directConnect: true,
-  baseUrl: 'http://localhost:4200/',
+  baseUrl: 'http://localhost:4201/',
   framework: 'jasmine',
   jasmineNodeOpts: {
     showColors: true,

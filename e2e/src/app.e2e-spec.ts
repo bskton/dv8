@@ -1,14 +1,14 @@
 import { AppPage } from './app.po';
 
-describe('workspace-project App', () => {
+describe('Home page', () => {
   let page: AppPage;
 
   beforeEach(() => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display "Click me!" button', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to dv8!');
+    expect(page.getHomeButtonText()).toEqual("Click me!");
   });
 });
