@@ -6,7 +6,7 @@ const { SpecReporter } = require('jasmine-spec-reporter');
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
-    './src/**/*.e2e-spec.ts'
+    './src/features/**/*.feature'
   ],
   capabilities: {
     'browserName': 'chrome',
@@ -14,23 +14,22 @@ exports.config = {
       'args': [
         '--headless',
         '--disable-gpu',
-        // Without a remote debugging port, Google Chrome exits immediately.
         '--remote-debugging-port=9222',
       ]
     }
   },
   directConnect: true,
   baseUrl: 'http://localhost:4201/',
-  framework: 'jasmine',
-  jasmineNodeOpts: {
-    showColors: true,
-    defaultTimeoutInterval: 30000,
-    print: function() {}
+  framework: 'custom',
+  frameworkPath: require.resolve('protractor-cucumber-framework'),
+  cucumberOpts: {
+    require: ['./src/steps/**/*.ts'],
+    strict: true,
+    dryRun: false
   },
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
-    jasmine.getEnv().addReporter(new SpecReporter({ spec: { displayStacktrace: true } }));
   }
 };
