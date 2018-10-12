@@ -1,13 +1,12 @@
 import { Before, Given, Then } from 'cucumber';
 import { expect } from 'chai';
-import { browser, by, element } from "protractor";
 
-import { AppPage } from '../pages/app.po';
+import { HomePage } from '../pages/home.po';
 
-let page: AppPage;
+let page: HomePage;
 
 Before(() => {
-  page = new AppPage();
+  page = new HomePage();
 })
 
 Given('I am on home page', (cb) => {
