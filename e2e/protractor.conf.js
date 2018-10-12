@@ -1,8 +1,6 @@
 // Protractor configuration file, see link for more information
 // https://github.com/angular/protractor/blob/master/lib/config.ts
 
-const { SpecReporter } = require('jasmine-spec-reporter');
-
 exports.config = {
   allScriptsTimeout: 11000,
   specs: [
@@ -12,9 +10,7 @@ exports.config = {
     'browserName': 'chrome',
     'chromeOptions': {
       'args': [
-        '--headless',
-        '--disable-gpu',
-        '--remote-debugging-port=9222',
+        '--no-sandbox'
       ]
     }
   },
