@@ -37,4 +37,16 @@ describe('SignupComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should contain input field for email', () => {
+    const signupElement: HTMLElement = fixture.nativeElement;
+    const input = signupElement.querySelector('input[type=email]');
+    expect(input.textContent).toEqual('');
+  });
+
+  it('should contain input field for password', () => {
+    const signupElement: HTMLElement = fixture.nativeElement;
+    const input = signupElement.querySelector('input[type=password]');
+    expect(input.textContent).toEqual('');
+  });
 });
