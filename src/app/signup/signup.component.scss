@@ -1,0 +1,16 @@
+.signup-form {
+  padding: var(--default-gap);
+  padding-top: 10vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__input {
+    width: 90%;
+  }
+
+  &__button {
+    padding-top: var(--default-gap);
+  }
+}
