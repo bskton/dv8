@@ -25,6 +25,7 @@ exports.config = {
     });
   },
   suites: {
-    signup: './src/features/signup.feature'
+    signup: './src/features/signup.feature',
+    signupFailed: './src/features/signup.failed.feature'
   }
 };

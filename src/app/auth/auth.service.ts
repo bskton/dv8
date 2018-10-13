@@ -1,3 +1,4 @@
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -11,15 +12,24 @@ export class AuthService {
 
   private user: User;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private afAuth: AngularFireAuth) {}
+
+  private createUser(authData: AuthData) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(
+      authData.email,
+      authData.password
+    );
+  }
 
   registerUser(authData: AuthData): void {
-    this.user = {
-      email: authData.email,
-      userId: Math.round(Math.random() * 10000).toString()
-    }
-    this.authChange.next(true);
-    this.router.navigate(['/profile']);
+    this.createUser(authData)
+      .then(result => {
+        this.authChange.next(true);
+        this.router.navigate(['/profile']);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   logout() {
