@@ -16,3 +16,9 @@ To run e2e tests in Chrome execute outside of the docker container
 ng e2e --port 4201
 ```
 To execute e2e tests you need angular cli to be installed globally on our computer.
+
+## Upgrading packages
+```
+docker run --rm -it -v $PWD:/app -u $(id -u):$(id -g) node:10.11.0 bash
+npm upgrade
+```
