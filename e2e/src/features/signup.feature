@@ -8,3 +8,7 @@ Feature: Signup
     And enter "password" into the field "Password"
     And click button "Get Started"
     Then I redirected on page "profile"
+    And I see success message "Your account has been successfully created."
+    And I see message "Please check your e-mail and activate your account."
+
+  

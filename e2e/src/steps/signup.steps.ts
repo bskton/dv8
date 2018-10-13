@@ -34,3 +34,17 @@ Then('I redirected on page {string}', (url, cb) => {
     cb();
   });
 });
+
+Then('I see success message {string}', (msg, cb) => {
+  page.hasSuccessMsg().then((text) => {
+    expect(msg).to.be.eq(text);
+    cb();
+  });
+});
+
+Then('I see message {string}', (msg, cb) => {
+  page.hasCheckEmailMsg().then(text => {
+    expect(msg).to.be.eq(text);
+    cb();
+  });
+});

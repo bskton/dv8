@@ -6,7 +6,7 @@ export class SignupPage {
   }
 
   enterValueIntoField(value: string, field: string) {
-    return element(by.css('input[type='+field+']')).sendKeys(value);
+    return element(by.css('input[type=' + field + ']')).sendKeys(value);
   }
 
   clickButton(label: string) {
@@ -15,5 +15,13 @@ export class SignupPage {
 
   currentUrl() {
     return browser.getCurrentUrl();
+  }
+
+  hasSuccessMsg() {
+    return element(by.css('.msg-success')).getText();
+  }
+
+  hasCheckEmailMsg() {
+    return element(by.css('.msg-check-email')).getText();
   }
 }
