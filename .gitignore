@@ -37,4 +37,8 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# App Files
+/environments/*
+!/environments/.gitkeep
 .env
