@@ -12,4 +12,3 @@ services:
       - "4200:4200"
       - "9876:9876"
     user: "1000"
-    command: ["ng", "serve", "--host=0.0.0.0", "--configuration=dev"]

@@ -3,6 +3,7 @@ import { MatSidenav } from '@angular/material';
 
 import { AuthService } from './auth/auth.service';
 import { Subscription } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: "app-root",
@@ -17,6 +18,8 @@ export class AppComponent implements OnInit, OnDestroy {
   subscription: Subscription;
 
   title = "dv8";
+
+  env = environment.env;
 
   constructor(private authService: AuthService) {}
 

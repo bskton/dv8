@@ -1,5 +1,5 @@
 import * as firebase from 'firebase';
-import { environment } from '../../../src/environments/environment';
+import { environment } from '../../../src/environments/environment.e2e';
 
 export class Auth {
   init() {
