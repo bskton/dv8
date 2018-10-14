@@ -39,6 +39,6 @@ testem.log
 Thumbs.db
 
 # App Files
-/environments/*
-!/environments/.gitkeep
+src/environments/*
+!src/environments/.gitkeep
 .env
