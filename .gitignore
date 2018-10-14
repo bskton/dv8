@@ -41,4 +41,5 @@ Thumbs.db
 # App Files
 src/environments/*
 !src/environments/.gitkeep
+!src/environments/environment.ts
 .env
