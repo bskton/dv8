@@ -12,7 +12,7 @@ import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
-import { environment } from '../environments/environment.prod';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
