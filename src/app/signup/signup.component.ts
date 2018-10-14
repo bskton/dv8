@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { AuthService } from '../auth/auth.service';
@@ -10,7 +10,7 @@ import { AuthService } from '../auth/auth.service';
 })
 export class SignupComponent implements OnInit {
 
-  constructor(private authService: AuthService) { }
+  constructor(@Inject('AuthService') private authService: AuthService) { }
 
   ngOnInit() {
   }

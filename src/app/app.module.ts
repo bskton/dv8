@@ -30,7 +30,12 @@ import { environment } from '../environments/environment';
     MaterialModule,
     AppRoutingModule
   ],
-  providers: [AuthService],
+  providers: [
+    {
+      provide: 'AuthService', 
+      useClass: environment.authServiceType
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
