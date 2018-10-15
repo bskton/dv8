@@ -39,6 +39,9 @@ testem.log
 Thumbs.db
 
 # App Files
+e2e/environments/*
+!e2e/environments/.gitkeep
+!e2e/environments/environment.dist.ts
 src/environments/*
 !src/environments/.gitkeep
 !src/environments/environment.ts

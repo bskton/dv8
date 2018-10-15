@@ -3,7 +3,7 @@
 
 exports.config = {
   allScriptsTimeout: 11000,
-  specs: ['./src/features/**/*.feature'],
+  specs: ['./features/**/*.feature'],
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
@@ -15,7 +15,7 @@ exports.config = {
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   cucumberOpts: {
-    require: ['./src/steps/**/*.ts'],
+    require: ['./steps/**/*.ts'],
     strict: true,
     dryRun: false
   },
@@ -25,7 +25,7 @@ exports.config = {
     });
   },
   suites: {
-    signup: './src/features/signup.feature',
-    signupFailed: './src/features/signup.failed.feature'
+    signup: './features/signup.feature',
+    signupFailed: './features/signup.failed.feature'
   }
 };

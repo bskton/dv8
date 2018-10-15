@@ -1,11 +1,12 @@
-import { Before, Given, Then } from 'cucumber';
+import { Before, Given, When, Then } from 'cucumber';
+import { browser } from 'protractor';
 import { expect } from 'chai';
 
 import { HomePage } from '../pages/home.po';
 
 let page: HomePage;
 
-Before(() => {
+Before({tags: '@home'}, () => {
   page = new HomePage();
 })
 

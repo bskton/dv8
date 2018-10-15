@@ -1,9 +1,11 @@
 import * as firebase from 'firebase';
-import { environment } from '../../../src/environments/environment.e2e';
+import { environment } from '../environments/environment';
 
 export class Auth {
   init() {
-    firebase.initializeApp(environment.firebase);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(environment.firebase);
+    }
   }
 
   createUser(

@@ -1,8 +1,8 @@
-import { browser, by, element } from 'protractor';
+import { browser, by, element, ExpectedConditions } from 'protractor';
 
 export class SignupPage {
-  navigateTo(url: string) {
-    return browser.get(url);
+  navigateTo() {
+    return browser.get('/signup');
   }
 
   enterValueIntoField(value: string, field: string) {
@@ -14,7 +14,16 @@ export class SignupPage {
   }
 
   currentUrl() {
-    return browser.getCurrentUrl();
+    return browser
+      .wait(
+        ExpectedConditions.textToBePresentInElement(
+          element(by.css('.logo')),
+          'DV8'
+        ),
+        5000
+      )
+      .then(() => browser.getCurrentUrl())
+      .then((url) => url.replace(browser.baseUrl + '/', ''));
   }
 
   hasSuccessMsg() {
