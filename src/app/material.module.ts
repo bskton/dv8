@@ -5,7 +5,8 @@ import {
   MatSidenavModule,
   MatToolbarModule,
   MatListModule,
-  MatInputModule
+  MatInputModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -13,6 +14,7 @@ import {
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatSnackBarModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule
@@ -21,6 +23,7 @@ import {
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatSnackBarModule,
     MatListModule,
     MatSidenavModule,
     MatToolbarModule

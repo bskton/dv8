@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 import { AuthService } from './auth.service';
 import { User } from './user.model';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable()
 export class FirebaseAuthService implements AuthService {
@@ -13,7 +14,11 @@ export class FirebaseAuthService implements AuthService {
 
   private user: User;
 
-  constructor(private router: Router, private afAuth: AngularFireAuth) {}
+  constructor(
+    private router: Router,
+    private afAuth: AngularFireAuth,
+    private snackbar: MatSnackBar
+  ) {}
 
   private createUser(authData: AuthData) {
     return this.afAuth.auth.createUserWithEmailAndPassword(
@@ -29,7 +34,7 @@ export class FirebaseAuthService implements AuthService {
         this.router.navigate(['/profile']);
       })
       .catch(error => {
-        console.log(error);
+        this.snackbar.open(error.message, null);
       });
   }
 

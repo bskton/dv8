@@ -33,4 +33,12 @@ export class SignupPage {
   hasCheckEmailMsg() {
     return element(by.css('.msg-check-email')).getText();
   }
+
+  clickSignupButton(label: string) {
+    return element(by.buttonText(label)).click();
+  }
+
+  hasErrorMsg() {
+    return element(by.css('simple-snack-bar')).getText();
+  }
 }

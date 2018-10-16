@@ -11,9 +11,11 @@ ng test
 ```
 
 ## E2E tesing
-To run e2e tests in Chrome execute outside of the docker container
+To run e2e tests in Chrome execute outside of the docker container 
+create files e2e/environments/environment.ts and src/environments/environment.e2e.ts.
+Then run
 ```
-ng e2e --port 4201
+ng e2e
 ```
 To execute e2e tests you need angular cli to be installed globally on our computer.
 

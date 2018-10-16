@@ -8,7 +8,7 @@ Feature: Signup
     And a user with email "user@mail.domain" and password "123123" does not exist
     When I enter "user@mail.domain" into the field "Email"
     And enter "123123" into the field "Password"
-    And click button "Get Started"
+    And click button "Sign Up"
     Then I redirected on page "profile"
     And I see success message "Your account has been successfully created."
     And I see message "Please check your e-mail and activate your account."
@@ -19,7 +19,7 @@ Feature: Signup
     And I am on sign up page
     When I enter "user@mail.domain" into the field "Email"
     And enter "123123" into the field "Password"
-#   And I press button "Get Started"
-#   Then I am on page "signup"
-#   And I see error message "This email is already in use"
+    And I press button "Sign Up"
+    Then I am on page "signup"
+    And I see error message "The email address is already in use by another account."
 #   And I see link "Want to log in?"

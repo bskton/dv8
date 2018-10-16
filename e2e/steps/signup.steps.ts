@@ -71,6 +71,7 @@ Before({ tags: '@signup-failed' }, () => {
 
 Given(
   'a user with email {string} and password {string} already exists',
+  { timeout: 10000 },
   (email: string, password: string, cb) => {
     auth
       .removeUser(email, password)
@@ -81,3 +82,21 @@ Given(
       });
   }
 );
+
+When('I press button {string}', (label: string, cb) => {
+  page.clickSignupButton(label).then(() => cb());
+});
+
+Then('I am on page {string}', (url: string, cb) => {
+  page.currentUrl().then((currentUrl: string) => {
+    expect(currentUrl).to.be.eq(url);
+    cb();
+  });
+});
+
+Then('I see error message {string}', (msg: string, cb) => {
+  page.hasErrorMsg().then((errorMsg: string) => {
+    expect(errorMsg).to.be.eq(msg);
+    cb();
+  });
+});
