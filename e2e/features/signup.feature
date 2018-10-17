@@ -23,7 +23,7 @@ Feature: Signup
     And I see error message "The email address is already in use by another account."
 #   And I see link "Want to log in?"
 
-  @signup-email-validation-error
+  @signup-empty-field-validation-error
   Scenario: Show validation error if email is empty
     Given page "signup" is opened
     When I click input "Email"
@@ -31,3 +31,10 @@ Feature: Signup
     Then I see validation message "Field must not be empty." for "Email"
     And I click input "Email"
     And I see validation message "Has to be at least 6 characters long." for "Password"
+
+  @signup-invalid-email-error
+  Scenario: Show validation error if email is invalid
+    Given I am on page "signup"
+    When I enter "test" into the field "Email"
+    And I click input "Password"
+    Then I see validation message "Email is invalid." for "Email"

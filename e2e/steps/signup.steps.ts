@@ -123,3 +123,9 @@ Then(
     });
   }
 );
+
+Given('I am on page {string}', (url: string, cb) => {
+  page.navigateToUrl(url).then(() => {
+    cb();
+  });
+});
