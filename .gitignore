@@ -38,6 +38,9 @@ testem.log
 .DS_Store
 Thumbs.db
 
+# Firebase
+.firebase/*
+
 # App Files
 e2e/environments/*
 !e2e/environments/.gitkeep

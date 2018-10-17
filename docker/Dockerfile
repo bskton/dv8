@@ -4,6 +4,8 @@ RUN apt-get update && apt-get install -y curl xvfb chromium
 
 RUN npm i -g @angular/cli@6.2.3
 
+RUN npm install -g firebase-tools
+
 ADD xvfb-chromium /usr/bin/xvfb-chromium
 RUN ln -s /usr/bin/xvfb-chromium /usr/bin/google-chrome && \
   ln -s /usr/bin/xvfb-chromium /usr/bin/chromium-browser && \
