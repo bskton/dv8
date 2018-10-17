@@ -14,6 +14,7 @@ export class SignupPage {
   }
 
   currentUrl() {
+    browser.waitForAngular();
     return browser
       .wait(
         ExpectedConditions.textToBePresentInElement(
@@ -23,7 +24,7 @@ export class SignupPage {
         5000
       )
       .then(() => browser.getCurrentUrl())
-      .then((url) => url.replace(browser.baseUrl + '/', ''));
+      .then(url => url.replace(browser.baseUrl + '/', ''));
   }
 
   hasSuccessMsg() {
@@ -39,6 +40,25 @@ export class SignupPage {
   }
 
   hasErrorMsg() {
-    return element(by.css('simple-snack-bar')).getText();
+    return browser
+      .wait(
+        ExpectedConditions.visibilityOf(element(by.css('simple-snack-bar'))),
+        5000
+      )
+      .then(() => element(by.css('simple-snack-bar')).getText());
+  }
+
+  openUrl(url: string) {
+    return browser.get('/' + url);
+  }
+
+  clickInput(label: string) {
+    return element(by.css('input[placeholder="' + label + '"]')).click();
+  }
+
+  getValidationMsgFor(label: string) {
+    return element(
+      by.css('.signup-form__input-' + label.toLowerCase() + ' mat-error')
+    ).getText();
   }
 }

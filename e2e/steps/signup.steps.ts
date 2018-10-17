@@ -100,3 +100,18 @@ Then('I see error message {string}', (msg: string, cb) => {
     cb();
   });
 });
+
+Given('page {string} is opened', (url: string, cb) => {
+  page.openUrl(url).then(() => cb());
+});
+
+When('I click input {string}', (label: string, cb) => {
+  page.clickInput(label).then(() => cb());
+});
+
+Then('I see validation message {string} for {string}', (msg: string, label: string, cb) => {
+  page.getValidationMsgFor(label).then((actualMsg: string) => {
+    expect(actualMsg).to.be.eq(msg);
+    cb();
+  });
+});
