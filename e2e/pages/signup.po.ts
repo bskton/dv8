@@ -1,6 +1,7 @@
 import { browser, by, element, ExpectedConditions } from 'protractor';
+import { Page } from './page.po';
 
-export class SignupPage {
+export class SignupPage extends Page {
   navigateTo() {
     return browser.get('/signup');
   }
@@ -11,20 +12,6 @@ export class SignupPage {
 
   clickButton(label: string) {
     return element(by.css('form button')).click();
-  }
-
-  currentUrl() {
-    browser.waitForAngular();
-    return browser
-      .wait(
-        ExpectedConditions.textToBePresentInElement(
-          element(by.css('.logo')),
-          'DV8'
-        ),
-        5000
-      )
-      .then(() => browser.getCurrentUrl())
-      .then(url => url.replace(browser.baseUrl + '/', ''));
   }
 
   hasSuccessMsg() {

@@ -2,13 +2,16 @@ import { Before, Given, When, Then, After } from 'cucumber';
 import { expect } from 'chai';
 
 import { Auth } from '../libs/auth';
+import { ProfilePage } from '../pages/profile.po';
 import { SignupPage } from '../pages/signup.po';
 
+let profile: ProfilePage;
 let page: SignupPage;
 let auth: Auth;
 
 Before({ tags: '@signup' }, () => {
   page = new SignupPage();
+  profile = new ProfilePage();
   auth = new Auth();
   auth.init();
 });
@@ -38,16 +41,18 @@ When('enter {string} into the field {string}', (password, field, cb) => {
   page.enterValueIntoField(password, field).then(() => cb());
 });
 
-When('click button {string}', (label, cb) => {
-  page.clickButton(label).then(() => cb());
-});
-
-Then('I redirected on page {string}', (url, cb) => {
-  page.currentUrl().then(currentUrl => {
-    expect(currentUrl).to.be.eq(url);
-    cb();
-  });
-});
+When(
+  'click button {string} and redirected on page {string} with url {string}',
+  (label: string, header: string, url: string, cb) => {
+    page
+      .clickButton(label)
+      .then(() => profile.urlAfterLoad(header))
+      .then((currentUrl: string) => {
+        expect(currentUrl).to.be.eq(url);
+        cb();
+      });
+  }
+);
 
 Then('I see success message {string}', (msg, cb) => {
   page.hasSuccessMsg().then(text => {
@@ -87,8 +92,8 @@ When('I press button {string}', (label: string, cb) => {
   page.clickSignupButton(label).then(() => cb());
 });
 
-Then('I am on page {string}', (url: string, cb) => {
-  page.currentUrl().then((currentUrl: string) => {
+Then('I am on same page {string}', (url: string, cb) => {
+  page.url().then((currentUrl: string) => {
     expect(currentUrl).to.be.eq(url);
     cb();
   });
@@ -109,9 +114,12 @@ When('I click input {string}', (label: string, cb) => {
   page.clickInput(label).then(() => cb());
 });
 
-Then('I see validation message {string} for {string}', (msg: string, label: string, cb) => {
-  page.getValidationMsgFor(label).then((actualMsg: string) => {
-    expect(actualMsg).to.be.eq(msg);
-    cb();
-  });
-});
+Then(
+  'I see validation message {string} for {string}',
+  (msg: string, label: string, cb) => {
+    page.getValidationMsgFor(label).then((actualMsg: string) => {
+      expect(actualMsg).to.be.eq(msg);
+      cb();
+    });
+  }
+);
