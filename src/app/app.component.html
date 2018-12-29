@@ -15,16 +15,20 @@
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div class="logo">
-        <a routerLink="/">DV8</a>
-      </div>
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </mat-toolbar>
+  <mat-sidenav-content class="content">
+    <header>
+      <mat-toolbar color="primary">
+        <div class="logo">
+          <a routerLink="/">DV8</a>
+        </div>
+        <button mat-icon-button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar>
+    </header>
     <router-outlet></router-outlet>
-    <div>Environment: {{ env }}</div>
+    <footer class="footer">
+      <div class="footer__text">Environment: {{ env }}</div>
+    </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>
