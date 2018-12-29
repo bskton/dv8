@@ -2,8 +2,12 @@
   <mat-sidenav #sidenav>
     <mat-nav-list>
       <a *ngIf="!isAuth" mat-list-item routerLink="/signup" (click)="sidenav.close()">
-        <mat-icon>face</mat-icon>
+        <mat-icon>how_to_reg</mat-icon>
         <span>Sign Up</span>
+      </a>
+      <a *ngIf="!isAuth" mat-list-item routerLink="/signin" (click)="sidenav.close()">
+        <mat-icon>face</mat-icon>
+        <span>Sign In</span>
       </a>
       <a *ngIf="isAuth" mat-list-item (click)="onLogout()">
         <mat-icon>exit_to_app</mat-icon>

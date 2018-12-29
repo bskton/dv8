@@ -1,0 +1,22 @@
+.heading {
+  text-align: center;
+  padding-top: 3rem;
+}
+
+.auth-form {
+  padding: var(--default-gap);
+  padding-top: 1.6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__input-email,
+  &__input-password {
+    width: 90%;
+  }
+
+  &__button {
+    padding-top: var(--default-gap);
+  }
+}

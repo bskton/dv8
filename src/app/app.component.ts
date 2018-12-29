@@ -39,4 +39,8 @@ export class AppComponent implements OnInit, OnDestroy {
     this.sidenav.close();
     this.authService.logout();
   }
+
+  onLogin() {
+
+  }
 }

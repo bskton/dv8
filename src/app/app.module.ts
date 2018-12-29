@@ -13,13 +13,15 @@ import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { environment } from '../environments/environment';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ProfileComponent,
-    SignupComponent
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     AngularFireAuthModule,

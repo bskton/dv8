@@ -38,7 +38,20 @@ export class FirebaseAuthService implements AuthService {
       });
   }
 
+  login(authData: AuthData): void {
+    this.afAuth.auth
+      .signInWithEmailAndPassword(authData.email, authData.password)
+      .then(result => {
+        this.authChange.next(true);
+        this.router.navigate(['/profile']);
+      })
+      .catch(error => {
+        this.snackbar.open(error.message, null);
+      });
+  }
+
   logout(): void {
+    this.afAuth.auth.signOut();
     this.user = null;
     this.authChange.next(false);
     this.router.navigate(['/signup']);
