@@ -6,10 +6,6 @@ export class SignupPage extends Page {
     return browser.get('/signup');
   }
 
-  enterValueIntoField(value: string, field: string) {
-    return element(by.css('input[type=' + field + ']')).sendKeys(value);
-  }
-
   clickButton(label: string) {
     return element(by.css('form button')).click();
   }
@@ -45,7 +41,7 @@ export class SignupPage extends Page {
 
   getValidationMsgFor(label: string) {
     return element(
-      by.css('.signup-form__input-' + label.toLowerCase() + ' mat-error')
+      by.css('.auth-form__input-' + label.toLowerCase() + ' mat-error')
     ).getText();
   }
 }

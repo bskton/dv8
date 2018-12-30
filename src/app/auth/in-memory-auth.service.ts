@@ -19,6 +19,11 @@ export class InMemoryAuthService implements AuthService {
     this.router.navigate(['/profile']);
   }
 
+  login(authData: AuthData): void {
+    this.authChange.next(true);
+    this.router.navigate(['/profile']);
+  }
+
   logout(): void {
     this.user = null;
     this.authChange.next(false);

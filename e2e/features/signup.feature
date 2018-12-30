@@ -1,4 +1,4 @@
-Feature: Signup
+Feature: Sign Up
 
   A user should be able to sign up to use all available features.
 
@@ -7,7 +7,7 @@ Feature: Signup
     Given I am on sign up page
     And a user with email "user@mail.domain" and password "123123" does not exist
     When I enter "user@mail.domain" into the field "Email"
-    And enter "123123" into the field "Password"
+    And I enter "123123" into the field "Password"
     And click button "Sign Up" and redirected on page "Profile" with url "profile"
     Then I see success message "Your account has been successfully created."
     And I see message "Please check your e-mail and activate your account."
@@ -17,7 +17,7 @@ Feature: Signup
     Given a user with email "user@mail.domain" and password "123123" already exists
     And I am on sign up page
     When I enter "user@mail.domain" into the field "Email"
-    And enter "123123" into the field "Password"
+    And I enter "123123" into the field "Password"
     And I press button "Sign Up"
     Then I am on same page "signup"
     And I see error message "The email address is already in use by another account."

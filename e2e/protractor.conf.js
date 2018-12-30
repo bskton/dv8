@@ -26,6 +26,6 @@ exports.config = {
   },
   suites: {
     signup: './features/signup.feature',
-    signupFailed: './features/signup.failed.feature'
+    signin: './features/signin.feature',
   }
 };

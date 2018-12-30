@@ -1,5 +1,4 @@
 import { Before, Given, When, Then } from 'cucumber';
-import { browser } from 'protractor';
 import { expect } from 'chai';
 
 import { HomePage } from '../pages/home.po';

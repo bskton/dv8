@@ -1,4 +1,4 @@
-import { Before, Given, When, Then, After } from 'cucumber';
+import { Before, Given, When, Then } from 'cucumber';
 import { expect } from 'chai';
 
 import { Auth } from '../libs/auth';
@@ -33,14 +33,6 @@ Given(
   }
 );
 
-When('I enter {string} into the field {string}', (email, field, cb) => {
-  page.enterValueIntoField(email, field).then(() => cb());
-});
-
-When('enter {string} into the field {string}', (password, field, cb) => {
-  page.enterValueIntoField(password, field).then(() => cb());
-});
-
 When(
   'click button {string} and redirected on page {string} with url {string}',
   (label: string, header: string, url: string, cb) => {
@@ -74,24 +66,6 @@ Before({ tags: '@signup-failed' }, () => {
   auth.init();
 });
 
-Given(
-  'a user with email {string} and password {string} already exists',
-  { timeout: 10000 },
-  (email: string, password: string, cb) => {
-    auth
-      .removeUser(email, password)
-      .then(() => auth.createUser(email, password))
-      .then(() => cb())
-      .catch(() => {
-        auth.createUser(email, password).then(() => cb());
-      });
-  }
-);
-
-When('I press button {string}', (label: string, cb) => {
-  page.clickSignupButton(label).then(() => cb());
-});
-
 Then('I am on same page {string}', (url: string, cb) => {
   page.url().then((currentUrl: string) => {
     expect(currentUrl).to.be.eq(url);
@@ -123,9 +97,3 @@ Then(
     });
   }
 );
-
-Given('I am on page {string}', (url: string, cb) => {
-  page.navigateToUrl(url).then(() => {
-    cb();
-  });
-});
