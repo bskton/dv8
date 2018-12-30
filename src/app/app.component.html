@@ -1,5 +1,5 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav class="sidenav">
     <mat-nav-list>
       <a *ngIf="!isAuth" mat-list-item routerLink="/signup" (click)="sidenav.close()">
         <mat-icon>how_to_reg</mat-icon>
