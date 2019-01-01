@@ -1,6 +1,6 @@
 <h1 class="heading">Sign Up</h1>
 <form class="auth-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <mat-form-field class="auth-form__input-email">
+  <mat-form-field class="auth-form__input-email form-input-email">
     <input
       matInput
       type="email"
@@ -14,7 +14,7 @@
     <mat-error *ngIf="emailInput.hasError('email')">Email is invalid.</mat-error>
   </mat-form-field>
   <mat-form-field
-    class="auth-form__input-password" hintLabel="Should be at least 6 characters long.">
+    class="auth-form__input-password form-input-password" hintLabel="Should be at least 6 characters long.">
     <input
       matInput
       type="password"

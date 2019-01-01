@@ -1,10 +1,11 @@
-import { Before, When } from 'cucumber';
+import { Before, Then, When } from 'cucumber';
+import { expect } from 'chai';
 
 import { Form } from '../libs/form';
 
 let form: Form;
 
-Before(() => {
+Before('@form', () => {
   form = new Form();
 });
 
@@ -15,3 +16,24 @@ When('I enter {string} into the field {string}', (value, field, cb) => {
 When('I press button {string}', (label: string, cb) => {
   form.pressButton(label).then(() => cb());
 });
+
+When('I click input {string}', (label: string, cb) => {
+  form.clickInput(label).then(() => cb());
+});
+
+Then('I see {string} button', (label: string, cb) => {
+  form.seeButton(label).then(text => {
+    expect(text).to.be.eq(label);
+    cb();
+  });
+});
+
+Then(
+  'I see validation message {string} for {string}',
+  (msg: string, label: string, cb) => {
+    form.getValidationMsgFor(label).then((actualMsg: string) => {
+      expect(actualMsg).to.be.eq(msg);
+      cb();
+    });
+  }
+);

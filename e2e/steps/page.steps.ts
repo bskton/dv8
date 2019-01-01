@@ -5,7 +5,7 @@ import { Page } from '../pages/page.po';
 
 let page: Page;
 
-Before(() => {
+Before('@page', () => {
   page = new Page();
 });
 
