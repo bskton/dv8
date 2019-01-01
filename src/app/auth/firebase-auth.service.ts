@@ -54,7 +54,7 @@ export class FirebaseAuthService implements AuthService {
     this.afAuth.auth.signOut();
     this.user = null;
     this.authChange.next(false);
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/signin']);
   }
 
   getUser(): User {
