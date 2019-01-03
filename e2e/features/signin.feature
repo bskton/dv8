@@ -9,4 +9,4 @@ Feature: Sign In
     When I enter "user@mail.domain" into the field "Email"
     And I enter "123123" into the field "Password"
     And I press button "Sign In"
-    And I am navigated on page "profile"
+    Then I am navigated on page "profile"
