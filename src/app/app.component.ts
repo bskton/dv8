@@ -2,9 +2,8 @@ import { Component, OnDestroy, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
 import { AuthService } from './auth/auth.service';
-import { of, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
-import { switchMap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -26,7 +25,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.subscription = this.authService.getAuthChange().subscribe(authState => {
       this.isAuth = authState;
     });
-    this.authService.init();
   }
 
   ngOnDestroy() {

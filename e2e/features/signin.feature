@@ -23,4 +23,7 @@ Feature: Sign In
     Then I am navigated on page "profile"
     And I click menu button
     And I see main menu with item "Log Out"
+    And I am on page ""
+    And I click menu button
+    And I see main menu with item "Log Out"
 

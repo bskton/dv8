@@ -22,7 +22,6 @@ Feature: Sign Up
     And I press button "Sign Up"
     Then I am navigated on page "signup"
     And I see error message "The email address is already in use by another account."
-#   And I see link "Want to log in?"
 
   @page @user @form @message
   Scenario: Show validation error if email is empty
