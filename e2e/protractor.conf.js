@@ -17,7 +17,8 @@ exports.config = {
   cucumberOpts: {
     require: ['./steps/**/*.ts'],
     strict: true,
-    dryRun: false
+    dryRun: false,
+    format: 'progress-bar'
   },
   onPrepare() {
     require('ts-node').register({

@@ -1,12 +1,13 @@
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { Observable, Subject } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthData } from './auth-data.model';
 import { AuthService } from './auth.service';
 import { User } from './user.model';
+import { switchMap, take } from 'rxjs/operators';
 
 @Injectable()
 export class FirebaseAuthService implements AuthService {
@@ -18,16 +19,43 @@ export class FirebaseAuthService implements AuthService {
     private router: Router,
     private afAuth: AngularFireAuth,
     private snackbar: MatSnackBar
-  ) {}
+  ) {
 
-  registerUser(authData: AuthData): void {
-    this.createUser(authData)
-      .then(result => {
-        this.authSuccessfully();
-      })
-      .catch(error => {
-        this.snackbar.open(error.message, null);
-      });
+  }
+
+  getUser(): User {
+    return {...this.user};
+  }
+
+  getAuthChange(): Subject<boolean> {
+    return this.authChange;
+  }
+
+  getUserObservable(): Observable<any> {
+    return this.afAuth.user;
+  }
+
+  init(): void {
+    this.afAuth.user.subscribe(user => {
+      console.log(user); // TODO
+      if (user) {
+        this.authChange.next(true);
+      } else {
+        this.authChange.next(false);
+      }
+    });
+  }
+
+  isAuth(): Observable<boolean> {
+    return this.afAuth.user.pipe(switchMap(user => {
+      if (user) {
+        this.authChange.next(true);
+        return of(true);
+      } else {
+        this.authChange.next(false);
+        return of(false);
+      }
+    }));
   }
 
   login(authData: AuthData): void {
@@ -48,16 +76,14 @@ export class FirebaseAuthService implements AuthService {
     this.router.navigate(['/signin']);
   }
 
-  getUser(): User {
-    return { ...this.user };
-  }
-
-  getAuthChange(): Subject<boolean> {
-    return this.authChange;
-  }
-
-  getUserObservable(): Observable<any> {
-    return this.afAuth.user;
+  registerUser(authData: AuthData): void {
+    this.createUser(authData)
+      .then(result => {
+        this.authSuccessfully();
+      })
+      .catch(error => {
+        this.snackbar.open(error.message, null);
+      });
   }
 
   private createUser(authData: AuthData) {
@@ -69,6 +95,10 @@ export class FirebaseAuthService implements AuthService {
 
   private authSuccessfully() {
     this.authChange.next(true);
+    this.user = {
+      email: '',
+      userId: ''
+    };
     this.router.navigate(['/profile']);
   }
 }

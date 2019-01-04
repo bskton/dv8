@@ -2,8 +2,9 @@ import { Component, OnDestroy, OnInit, ViewChild, Inject } from '@angular/core';
 import { MatSidenav } from '@angular/material';
 
 import { AuthService } from './auth/auth.service';
-import { Subscription } from 'rxjs';
+import { of, Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
+import { switchMap, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -17,29 +18,20 @@ export class AppComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  userSubscription: Subscription;
-
   env = environment.env;
 
   constructor(@Inject('AuthService') private authService: AuthService) {}
 
   ngOnInit() {
-    this.userSubscription = this.authService.getUserObservable().subscribe(user => {
-      if (user) {
-        this.isAuth = true;
-      }
-    });
     this.subscription = this.authService.getAuthChange().subscribe(authState => {
       this.isAuth = authState;
     });
+    this.authService.init();
   }
 
   ngOnDestroy() {
     if (this.subscription) {
       this.subscription.unsubscribe();
-    }
-    if (this.userSubscription) {
-      this.userSubscription.unsubscribe();
     }
   }
 

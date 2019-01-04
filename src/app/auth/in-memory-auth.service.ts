@@ -14,9 +14,20 @@ export class InMemoryAuthService implements AuthService {
 
   constructor(private router: Router) {}
 
-  registerUser(authData: AuthData): void {
-    this.authChange.next(true);
-    this.router.navigate(['/profile']);
+  getUser(): User {
+    return { ...this.user };
+  }
+
+  getAuthChange(): Subject<boolean> {
+    return this.authChange;
+  }
+
+  getUserObservable(): Observable<any> {
+    return new Observable();
+  }
+
+  isAuth(): boolean {
+    return this.user != null;
   }
 
   login(authData: AuthData): void {
@@ -30,15 +41,8 @@ export class InMemoryAuthService implements AuthService {
     this.router.navigate(['/signup']);
   }
 
-  getUser(): User {
-    return { ...this.user };
-  }
-
-  getAuthChange(): Subject<boolean> {
-    return this.authChange;
-  }
-
-  getUserObservable(): Observable<any> {
-    return new Observable();
+  registerUser(authData: AuthData): void {
+    this.authChange.next(true);
+    this.router.navigate(['/profile']);
   }
 }
