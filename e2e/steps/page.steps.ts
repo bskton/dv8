@@ -21,3 +21,9 @@ Then('I am navigated on page {string}', (expectedUrl: string, cb) => {
     cb();
   });
 });
+
+Then('I reload the page', (cb) => {
+  page.refresh().then(() => {
+    cb();
+  });
+});

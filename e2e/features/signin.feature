@@ -10,3 +10,17 @@ Feature: Sign In
     And I enter "123123" into the field "Password"
     And I press button "Sign In"
     Then I am navigated on page "profile"
+
+  @page @user @form @navigation
+  Scenario: Authentication state does not change after page reload
+    Given I am on page "signin"
+    And a user with email "user@mail.domain" and password "123123" already exists
+    When I enter "user@mail.domain" into the field "Email"
+    And I enter "123123" into the field "Password"
+    And I press button "Sign In"
+    And I am navigated on page "profile"
+    And I reload the page
+    Then I am navigated on page "profile"
+    And I click menu button
+    And I see main menu with item "Log Out"
+

@@ -3,15 +3,15 @@
     <mat-nav-list>
       <a *ngIf="!isAuth" mat-list-item routerLink="/signup" (click)="sidenav.close()">
         <mat-icon>how_to_reg</mat-icon>
-        <span>Sign Up</span>
+        <span class="main-menu-item">Sign Up</span>
       </a>
       <a *ngIf="!isAuth" mat-list-item routerLink="/signin" (click)="sidenav.close()">
         <mat-icon>face</mat-icon>
-        <span>Sign In</span>
+        <span class="main-menu-item">Sign In</span>
       </a>
       <a *ngIf="isAuth" mat-list-item (click)="onLogout()">
         <mat-icon>exit_to_app</mat-icon>
-        <span>Log Out</span>
+        <span class="main-menu-item">Log Out</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>

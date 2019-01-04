@@ -10,7 +10,7 @@ export class Navigation {
       ExpectedConditions.visibilityOf(
         element(by.cssContainingText('.mat-list-item-content', label))
       ), 5000)
-      .then(() => element(by.cssContainingText('.mat-list-item-content', label)).getText());
+      .then(() => element(by.cssContainingText('.main-menu-item', label)).getText());
   }
 
   clickMainMenuItem(label: string) {

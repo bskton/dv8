@@ -15,6 +15,10 @@ export class Page {
     }), 5000).then(() => currentUrl);
   }
 
+  refresh() {
+    return browser.refresh();
+  }
+
   private pathFrom(url: string) {
     return url.replace(browser.baseUrl + '/', '');
   }
