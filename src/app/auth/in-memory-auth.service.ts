@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 import { AuthData } from './auth-data.model';
 import { AuthService } from './auth.service';
@@ -36,5 +36,9 @@ export class InMemoryAuthService implements AuthService {
 
   getAuthChange(): Subject<boolean> {
     return this.authChange;
+  }
+
+  getUserObservable(): Observable<any> {
+    return new Observable();
   }
 }

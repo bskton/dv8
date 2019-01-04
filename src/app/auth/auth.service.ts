@@ -1,6 +1,6 @@
 import { AuthData } from './auth-data.model';
 import { User } from './user.model';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 export interface AuthService {
   registerUser(authData: AuthData): void;
@@ -8,4 +8,5 @@ export interface AuthService {
   logout(): void;
   getUser(): User;
   getAuthChange(): Subject<boolean>;
+  getUserObservable(): Observable<any>;
 }

@@ -1,7 +1,7 @@
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { AuthData } from './auth-data.model';
@@ -54,6 +54,10 @@ export class FirebaseAuthService implements AuthService {
 
   getAuthChange(): Subject<boolean> {
     return this.authChange;
+  }
+
+  getUserObservable(): Observable<any> {
+    return this.afAuth.user;
   }
 
   private createUser(authData: AuthData) {

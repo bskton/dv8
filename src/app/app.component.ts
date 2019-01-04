@@ -6,9 +6,9 @@ import { Subscription } from 'rxjs';
 import { environment } from '../environments/environment';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit, OnDestroy {
   @ViewChild('sidenav') sidenav: MatSidenav;
@@ -17,13 +17,18 @@ export class AppComponent implements OnInit, OnDestroy {
 
   subscription: Subscription;
 
-  title = "dv8";
+  userSubscription: Subscription;
 
   env = environment.env;
 
   constructor(@Inject('AuthService') private authService: AuthService) {}
 
   ngOnInit() {
+    this.userSubscription = this.authService.getUserObservable().subscribe(user => {
+      if (user) {
+        this.isAuth = true;
+      }
+    });
     this.subscription = this.authService.getAuthChange().subscribe(authState => {
       this.isAuth = authState;
     });
@@ -33,14 +38,13 @@ export class AppComponent implements OnInit, OnDestroy {
     if (this.subscription) {
       this.subscription.unsubscribe();
     }
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 
   onLogout() {
     this.sidenav.close();
     this.authService.logout();
-  }
-
-  onLogin() {
-
   }
 }
