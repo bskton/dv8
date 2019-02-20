@@ -1,6 +1,10 @@
 import { browser, by, element, ExpectedConditions } from 'protractor';
 
 export class Page {
+  clickLink(label: string) {
+    return element(by.linkText(label)).click();
+  }
+
   navigateToUrl(url: string) {
     return browser.get('/' + url);
   }
@@ -17,6 +21,10 @@ export class Page {
 
   refresh() {
     return browser.refresh();
+  }
+
+  seeLink(label: string) {
+    return element(by.linkText(label)).getText();
   }
 
   private pathFrom(url: string) {

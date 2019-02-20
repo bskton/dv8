@@ -28,6 +28,7 @@ exports.config = {
   suites: {
     home: './features/home.feature',
     logout: './features/logout.feature',
+    restorePassword: './features/restore-password.feature',
     signin: './features/signin.feature',
     signup: './features/signup.feature',
   }

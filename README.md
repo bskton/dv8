@@ -13,10 +13,17 @@ ng test
 ## E2E tesing
 To run e2e tests in Chrome execute outside of the docker container 
 create files e2e/environments/environment.ts and src/environments/environment.e2e.ts.
-Then run
+To run all test execute
 ```
 ng e2e
 ```
+
+To run a suite execute
+```
+ng e2e --suite <suite-name>
+```
+See the list of suites in e2e/protractor.conf.js
+
 To execute e2e tests you need angular cli to be installed globally on our computer.
 
 ## Upgrading packages
