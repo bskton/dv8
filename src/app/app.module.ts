@@ -14,6 +14,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { environment } from '../environments/environment';
 import { SigninComponent } from './signin/signin.component';
+import { PasswordRestoreComponent } from './password-restore/password-restore.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SigninComponent } from './signin/signin.component';
     HomeComponent,
     ProfileComponent,
     SignupComponent,
-    SigninComponent
+    SigninComponent,
+    PasswordRestoreComponent
   ],
   imports: [
     AngularFireAuthModule,
@@ -34,7 +36,7 @@ import { SigninComponent } from './signin/signin.component';
   ],
   providers: [
     {
-      provide: 'AuthService', 
+      provide: 'AuthService',
       useClass: environment.authServiceType
     }
   ],
