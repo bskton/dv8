@@ -28,6 +28,12 @@ export class FirebaseAuthService implements AuthService {
     });
   }
 
+  confirmPasswordReset(code: string, password: string): void {
+    this.afAuth.auth.confirmPasswordReset(code, password)
+      .then(resp => console.log(resp)) // TODO: Remove
+      .catch(error => console.log(error)); // TODO: Remove
+  }
+
   getUser(): User {
     return {...this.user};
   }
@@ -66,6 +72,18 @@ export class FirebaseAuthService implements AuthService {
       .catch(error => {
         this.snackbar.open(error.message, null);
       });
+  }
+
+  sendResetEmail(email: string): void {
+    this.afAuth.auth.sendPasswordResetEmail(email)
+      .then(() => console.log('Sent password reset email', email)) // TODO: Remove
+      .catch(error => console.log(error)); // TODO: Remove
+  }
+
+  verifyPasswordResetCode(code: string): void {
+    this.afAuth.auth.verifyPasswordResetCode(code)
+      .then(email => console.log(email)) // TODO: Remove
+      .catch(error => console.log(error)); // TODO: Remove
   }
 
   private createUser(authData: AuthData) {

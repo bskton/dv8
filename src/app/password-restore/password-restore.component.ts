@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-password-restore',
@@ -8,12 +10,12 @@ import { NgForm } from '@angular/forms';
 })
 export class PasswordRestoreComponent implements OnInit {
 
-  constructor() { }
+  constructor(@Inject('AuthService') private authService: AuthService) { }
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form);
+    this.authService.sendResetEmail(form.value.email);
   }
 }

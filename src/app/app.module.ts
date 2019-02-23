@@ -10,29 +10,31 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthService } from './auth/auth.service';
 import { HomeComponent } from './home/home.component';
+import { NewPasswordComponent } from './new-password/new-password.component';
+import { PasswordRestoreComponent } from './password-restore/password-restore.component';
 import { ProfileComponent } from './profile/profile.component';
+import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { environment } from '../environments/environment';
-import { SigninComponent } from './signin/signin.component';
-import { PasswordRestoreComponent } from './password-restore/password-restore.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    NewPasswordComponent,
+    PasswordRestoreComponent,
     ProfileComponent,
     SignupComponent,
-    SigninComponent,
-    PasswordRestoreComponent
+    SigninComponent
   ],
   imports: [
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebase),
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MaterialModule,
-    AppRoutingModule
+    MaterialModule
   ],
   providers: [
     {
