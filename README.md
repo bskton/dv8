@@ -31,3 +31,8 @@ To execute e2e tests you need angular cli to be installed globally on our comput
 docker run --rm -it -v $PWD:/app -u $(id -u):$(id -g) node:10.11.0 bash
 npm upgrade
 ```
+
+## Password restore feature
+
+Before use the password reset feature, you should set correct URL 
+for a password reset template in Firebase Console.
