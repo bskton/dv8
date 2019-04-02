@@ -9,7 +9,8 @@
       name="email"
       email
       required
-      #emailInput="ngModel">
+      #emailInput="ngModel"
+      [disabled]="(isLoading | async)">
     <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
     <mat-error *ngIf="emailInput.hasError('email')">Email is invalid.</mat-error>
   </mat-form-field>
@@ -23,17 +24,20 @@
       name="password"
       required
       minlength="6"
-      #pwInput="ngModel">
+      #pwInput="ngModel"
+      [disabled]="(isLoading | async)">
     <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
     <mat-error>Has to be at least 6 characters long.</mat-error>
   </mat-form-field>
   <div class="auth-form__button">
     <button
+      *ngIf="!(isLoading | async)"
       type="submit"
       mat-raised-button
       color="primary"
       [disabled]="f.invalid">Sign In
     </button>
+    <mat-spinner *ngIf="(isLoading | async)" [diameter]="36"></mat-spinner>
   </div>
   <div class="auth-form__forgot-password">
     <a routerLink="/password-restore">Forgot password?</a>

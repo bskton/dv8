@@ -3,10 +3,13 @@ import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { Observable, Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
 
 import { AuthData } from './auth-data.model';
 import { AuthService } from './auth.service';
 import { User } from './user.model';
+import * as fromApp from '../app.reducer';
+import * as UI from '../ui.actions';
 
 @Injectable()
 export class FirebaseAuthService implements AuthService {
@@ -17,7 +20,8 @@ export class FirebaseAuthService implements AuthService {
   constructor(
     private router: Router,
     private afAuth: AngularFireAuth,
-    private snackbar: MatSnackBar
+    private snackbar: MatSnackBar,
+    private store: Store<{ui: fromApp.State}>,
   ) {
     this.getUserObservable().subscribe(user => {
       if (user) {
@@ -47,12 +51,15 @@ export class FirebaseAuthService implements AuthService {
   }
 
   login(authData: AuthData): void {
+    this.store.dispatch(new UI.StartLoading());
     this.afAuth.auth
       .signInWithEmailAndPassword(authData.email, authData.password)
       .then(() => {
         this.authSuccessfully();
+        this.store.dispatch(new UI.StopLoading());
       })
       .catch(error => {
+        this.store.dispatch(new UI.StopLoading());
         this.snackbar.open(error.message, null);
       });
   }

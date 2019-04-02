@@ -45,4 +45,13 @@ export class InMemoryAuthService implements AuthService {
     this.authChange.next(true);
     this.router.navigate(['/profile']);
   }
+
+  confirmPasswordReset(code: string, password: string) {
+  }
+
+  sendResetEmail(email: string): void {
+  }
+
+  verifyPasswordResetCode(code: string): void {
+  }
 }

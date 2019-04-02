@@ -1,6 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+
 import { AuthService } from '../auth/auth.service';
+import * as fromApp from '../app.reducer';
 
 @Component({
   selector: 'app-signin',
@@ -9,9 +13,15 @@ import { AuthService } from '../auth/auth.service';
 })
 export class SigninComponent implements OnInit {
 
-  constructor(@Inject('AuthService') private authService: AuthService) { }
+  isLoading: Observable<boolean>;
+
+  constructor(
+    @Inject('AuthService') private authService: AuthService,
+    private store: Store<fromApp.State>
+  ) { }
 
   ngOnInit() {
+    this.isLoading = this.store.select(fromApp.getIsLoading);
   }
 
   onSubmit(form: NgForm) {

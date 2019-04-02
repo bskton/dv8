@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -15,6 +16,7 @@ import { PasswordRestoreComponent } from './password-restore/password-restore.co
 import { ProfileComponent } from './profile/profile.component';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { reducers } from './app.reducer';
 import { environment } from '../environments/environment';
 
 @NgModule({
@@ -34,7 +36,8 @@ import { environment } from '../environments/environment';
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forRoot(reducers),
   ],
   providers: [
     {
