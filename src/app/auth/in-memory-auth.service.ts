@@ -54,4 +54,12 @@ export class InMemoryAuthService implements AuthService {
 
   verifyPasswordResetCode(code: string): void {
   }
+
+  canActivate(): Observable<boolean> {
+    return undefined;
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return undefined;
+  }
 }

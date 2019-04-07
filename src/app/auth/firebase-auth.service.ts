@@ -1,7 +1,7 @@
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
-import { Observable, Subject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
@@ -11,6 +11,7 @@ import { User } from './user.model';
 import * as Auth from './auth.actions';
 import * as UI from '../ui.actions';
 import * as fromApp from '../app.reducer';
+import { map, take, tap } from 'rxjs/operators';
 
 @Injectable()
 export class FirebaseAuthService implements AuthService {
@@ -31,6 +32,19 @@ export class FirebaseAuthService implements AuthService {
     });
   }
 
+  canActivate(): Observable<boolean> {
+    return this.afAuth.authState
+      .pipe(
+        take(1),
+        map(user => !!user),
+        tap(loggedIn => {
+          if (!loggedIn) {
+            this.router.navigate['/signin'];
+          }
+        })
+      );
+  }
+
   confirmPasswordReset(code: string, password: string): void {
     this.afAuth.auth.confirmPasswordReset(code, password)
       .then(resp => console.log(resp)) // TODO: Remove
@@ -39,6 +53,10 @@ export class FirebaseAuthService implements AuthService {
 
   getUser(): User {
     return {...this.user};
+  }
+
+  isAuthenticated(): Observable<boolean> {
+    return this.store.select(fromApp.getIsAuthenticated);
   }
 
   login(authData: AuthData): void {
