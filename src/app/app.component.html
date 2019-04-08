@@ -1,6 +1,10 @@
 <mat-sidenav-container>
   <mat-sidenav #sidenav class="sidenav">
     <mat-nav-list>
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">
+        <mat-icon>home</mat-icon>
+        <span class="main-menu-item">Home</span>
+      </a>
       <a *ngIf="!(isAuth | async)" mat-list-item routerLink="/signup" (click)="sidenav.close()">
         <mat-icon>how_to_reg</mat-icon>
         <span class="main-menu-item">Sign Up</span>
@@ -8,6 +12,10 @@
       <a *ngIf="!(isAuth | async)" mat-list-item routerLink="/signin" (click)="sidenav.close()">
         <mat-icon>face</mat-icon>
         <span class="main-menu-item">Sign In</span>
+      </a>
+      <a *ngIf="isAuth | async" mat-list-item routerLink="/profile" (click)="sidenav.close()">
+        <mat-icon>portrait</mat-icon>
+        <span class="main-menu-item">Profile</span>
       </a>
       <a *ngIf="isAuth | async" mat-list-item (click)="onLogout()">
         <mat-icon>exit_to_app</mat-icon>

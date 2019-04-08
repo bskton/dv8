@@ -32,16 +32,11 @@ export class FirebaseAuthService implements AuthService {
     });
   }
 
-  canActivate(): Observable<boolean> {
+  authState(): Observable<boolean> {
     return this.afAuth.authState
       .pipe(
         take(1),
-        map(user => !!user),
-        tap(loggedIn => {
-          if (!loggedIn) {
-            this.router.navigate['/signin'];
-          }
-        })
+        map(user => !!user)
       );
   }
 

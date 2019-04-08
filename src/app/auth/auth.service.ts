@@ -3,7 +3,7 @@ import { User } from './user.model';
 import { Observable } from 'rxjs';
 
 export interface AuthService {
-  canActivate(): Observable<boolean>;
+  authState(): Observable<boolean>;
   confirmPasswordReset(code: string, password: string);
   getUser(): User;
   isAuthenticated(): Observable<boolean>;
