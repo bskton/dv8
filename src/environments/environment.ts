@@ -2,6 +2,8 @@
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+import { FirebaseAuthService } from '../app/auth/firebase-auth.service';
+
 export const environment = {
   env: 'insert-your-value-here',
   production: false,
@@ -13,7 +15,7 @@ export const environment = {
     storageBucket: 'insert-your-value-here',
     messagingSenderId: 'insert-your-value-here'
   },
-  // authServiceType: InMemoryAuthService  // For production use FirebaseAuthService
+  authServiceType: FirebaseAuthService
 };
 
 /*

@@ -5,6 +5,7 @@ Feature: Restore Password
   @page
   Scenario: Display Forgot password link on Sign In page
     Given I am on page "signin"
+    And I wait until see header "Sign In"
     And I see "Forgot password?" link
     When I click "Forgot password?" link
     Then I am navigated on page "password-restore"

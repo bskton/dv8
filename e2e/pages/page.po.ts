@@ -27,6 +27,11 @@ export class Page {
     return element(by.linkText(label)).getText();
   }
 
+  waitUntilSeeHeader() {
+    return browser.wait(ExpectedConditions.presenceOf(element(by.tagName('h1'))), 5000)
+      .then(() => element(by.tagName('h1')).getText());
+  }
+
   private pathFrom(url: string) {
     return url.replace(browser.baseUrl + '/', '');
   }

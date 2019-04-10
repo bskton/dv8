@@ -6,6 +6,7 @@ Feature: Log Out
   Scenario: Redirect on Sign In page after Log Out
     Given a user with email "test@mail.local" and password "secret" already exists
     And I am on page "signin"
+    And I wait until see header "Sign In"
     When I enter "test@mail.local" into the field "Email"
     And I enter "secret" into the field "Password"
     And I press button "Sign In"

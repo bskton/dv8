@@ -1,4 +1,4 @@
-import { Before, Given, Then, When } from 'cucumber';
+import { Before, Given, Then } from 'cucumber';
 import { expect } from 'chai';
 
 import { Page } from '../pages/page.po';
@@ -35,6 +35,13 @@ Then('I am navigated on page {string}', (expectedUrl: string, cb) => {
 
 Then('I reload the page', (cb) => {
   page.refresh().then(() => {
+    cb();
+  });
+});
+
+Then('I wait until see header {string}', (header: string, cb) => {
+  page.waitUntilSeeHeader().then((text: string) => {
+    expect(text).to.be.eq(header);
     cb();
   });
 });

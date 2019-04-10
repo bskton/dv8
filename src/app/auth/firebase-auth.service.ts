@@ -11,7 +11,7 @@ import { User } from './user.model';
 import * as Auth from './auth.actions';
 import * as UI from '../ui.actions';
 import * as fromApp from '../app.reducer';
-import { map, take, tap } from 'rxjs/operators';
+import { concatMap, take, tap } from 'rxjs/operators';
 
 @Injectable()
 export class FirebaseAuthService implements AuthService {
@@ -22,21 +22,22 @@ export class FirebaseAuthService implements AuthService {
     private afAuth: AngularFireAuth,
     private snackbar: MatSnackBar,
     private store: Store<fromApp.State>,
-  ) {
-    this.afAuth.user.subscribe(user => {
-      if (user) {
-        this.store.dispatch(new Auth.SetAuthenticated());
-      } else {
-        this.store.dispatch(new Auth.SetUnauthenticated());
-      }
-    });
-  }
+  ) {}
 
-  authState(): Observable<boolean> {
+  initAuthState(): Observable<boolean> {
     return this.afAuth.authState
       .pipe(
         take(1),
-        map(user => !!user)
+        tap(user => {
+          if (user) {
+            this.store.dispatch(new Auth.SetAuthenticated());
+          } else {
+            this.store.dispatch(new Auth.SetUnauthenticated());
+          }
+        }),
+        concatMap(() => {
+          return this.isAuthenticated();
+        })
       );
   }
 
