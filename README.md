@@ -1,5 +1,7 @@
 # DV8
 
+Angular application sample with Cucumber.
+
 ## Development environment
 ```
 docker-compose up
