@@ -1,35 +1,26 @@
-import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material';
+import { Observable } from 'rxjs';
 
 import { AuthService } from './auth/auth.service';
-import { Subscription } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit {
   @ViewChild('sidenav') sidenav: MatSidenav;
 
-  isAuth = false;
+  isAuth: Observable<boolean>;
 
-  subscription: Subscription;
+  env = environment.env;
 
-  title = "dv8";
-
-  constructor(private authService: AuthService) {}
+  constructor(@Inject('AuthService') private authService: AuthService) {}
 
   ngOnInit() {
-    this.subscription = this.authService.authChange.subscribe(authState => {
-      this.isAuth = authState;
-    });
-  }
-
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.isAuth = this.authService.initAuthState();
   }
 
   onLogout() {

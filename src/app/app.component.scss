@@ -10,6 +10,28 @@ mat-toolbar {
   display: flex;
 }
 
+.sidenav {
+  width: 20rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 .logo {
   flex-grow: 1;
+}
+
+.footer {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column-reverse;
+
+  &__text {
+    margin-bottom: 1.6rem;
+    text-align: center;
+    font-size: 1rem;
+  }
 }

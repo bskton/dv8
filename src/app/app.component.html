@@ -1,25 +1,42 @@
 <mat-sidenav-container>
-  <mat-sidenav #sidenav>
+  <mat-sidenav #sidenav class="sidenav">
     <mat-nav-list>
-      <a *ngIf="!isAuth" mat-list-item routerLink="/signup" (click)="sidenav.close()">
-        <mat-icon>face</mat-icon>
-        <span>Sign Up</span>
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">
+        <mat-icon>home</mat-icon>
+        <span class="main-menu-item">Home</span>
       </a>
-      <a *ngIf="isAuth" mat-list-item (click)="onLogout()">
+      <a *ngIf="!(isAuth | async)" mat-list-item routerLink="/signup" (click)="sidenav.close()">
+        <mat-icon>how_to_reg</mat-icon>
+        <span class="main-menu-item">Sign Up</span>
+      </a>
+      <a *ngIf="!(isAuth | async)" mat-list-item routerLink="/signin" (click)="sidenav.close()">
+        <mat-icon>face</mat-icon>
+        <span class="main-menu-item">Sign In</span>
+      </a>
+      <a *ngIf="isAuth | async" mat-list-item routerLink="/profile" (click)="sidenav.close()">
+        <mat-icon>portrait</mat-icon>
+        <span class="main-menu-item">Profile</span>
+      </a>
+      <a *ngIf="isAuth | async" mat-list-item (click)="onLogout()">
         <mat-icon>exit_to_app</mat-icon>
-        <span>Log Out</span>
+        <span class="main-menu-item">Log Out</span>
       </a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div class="logo">
-        <a routerLink="/">DV8</a>
-      </div>
-      <button mat-icon-button (click)="sidenav.toggle()">
-        <mat-icon>menu</mat-icon>
-      </button>
-    </mat-toolbar>
+  <mat-sidenav-content class="content">
+    <header>
+      <mat-toolbar color="primary">
+        <div class="logo">
+          <a routerLink="/">DV8</a>
+        </div>
+        <button mat-icon-button (click)="sidenav.toggle()" class="hamburger">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </mat-toolbar>
+    </header>
     <router-outlet></router-outlet>
+    <footer class="footer">
+      <div class="footer__text">Environment: {{ env }}</div>
+    </footer>
   </mat-sidenav-content>
 </mat-sidenav-container>

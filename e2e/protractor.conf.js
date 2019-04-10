@@ -3,15 +3,11 @@
 
 exports.config = {
   allScriptsTimeout: 11000,
-  specs: [
-    './src/features/**/*.feature'
-  ],
+  specs: ['./features/**/*.feature'],
   capabilities: {
-    'browserName': 'chrome',
-    'chromeOptions': {
-      'args': [
-        '--no-sandbox'
-      ]
+    browserName: 'chrome',
+    chromeOptions: {
+      args: ['--no-sandbox']
     }
   },
   directConnect: true,
@@ -19,13 +15,21 @@ exports.config = {
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   cucumberOpts: {
-    require: ['./src/steps/**/*.ts'],
+    require: ['./steps/**/*.ts'],
     strict: true,
-    dryRun: false
+    dryRun: false,
+    format: 'progress-bar'
   },
   onPrepare() {
     require('ts-node').register({
       project: require('path').join(__dirname, './tsconfig.e2e.json')
     });
+  },
+  suites: {
+    home: './features/home.feature',
+    logout: './features/logout.feature',
+    restorePassword: './features/restore-password.feature',
+    signin: './features/signin.feature',
+    signup: './features/signup.feature',
   }
 };

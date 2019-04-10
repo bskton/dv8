@@ -1,10 +1,11 @@
-<form class="signup-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <mat-form-field class="signup-form__input">
-    <input 
-      matInput 
-      type="email" 
-      placeholder="Email" 
-      ngModel 
+<h1 class="heading">Sign Up</h1>
+<form class="auth-form" #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <mat-form-field class="auth-form__input-email form-input-email">
+    <input
+      matInput
+      type="email"
+      placeholder="Email"
+      ngModel
       name="email"
       email
       required
@@ -12,12 +13,13 @@
     <mat-error *ngIf="emailInput.hasError('required')">Field must not be empty.</mat-error>
     <mat-error *ngIf="emailInput.hasError('email')">Email is invalid.</mat-error>
   </mat-form-field>
-  <mat-form-field class="signup-form__input" hintLabel="Should be at least 6 characters long.">
-    <input 
-      matInput 
-      type="password" 
-      placeholder="Password" 
-      ngModel 
+  <mat-form-field
+    class="auth-form__input-password form-input-password" hintLabel="Should be at least 6 characters long.">
+    <input
+      matInput
+      type="password"
+      placeholder="Password"
+      ngModel
       name="password"
       required
       minlength="6"
@@ -25,11 +27,12 @@
     <mat-hint align="end">{{ pwInput.value?.length }} / 6</mat-hint>
     <mat-error>Has to be at least 6 characters long.</mat-error>
   </mat-form-field>
-  <div class="signup-form__button">
-    <button 
-      type="submit" 
-      mat-raised-button 
-      color="primary" 
-      [disabled]="f.invalid">Sign Up</button>
+  <div class="auth-form__button">
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="f.invalid">Sign Up
+    </button>
   </div>
 </form>
