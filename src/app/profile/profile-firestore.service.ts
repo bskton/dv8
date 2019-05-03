@@ -10,6 +10,7 @@ import * as ProfileActions from './profile.actions';
 import { ProfileFormData } from './profile-form-data.model';
 import * as fromApp from '../app.reducer';
 import { Observable } from 'rxjs';
+import * as UI from '../ui.actions';
 
 @Injectable()
 export class ProfileFirestoreService implements ProfileService {
@@ -26,11 +27,16 @@ export class ProfileFirestoreService implements ProfileService {
       });
   }
 
+  getLoadingState(): Observable<boolean> {
+    return this.state.select(fromApp.getIsLoading);
+  }
+
   getProfile(): Observable<Profile> {
     return this.state.select(fromApp.getProfile);
   }
 
   init(): void {
+    this.state.dispatch(new UI.StartLoading());
     this.auth.getUser().pipe(
       concatMap(user => this.firestore
         .collection<Profile>('profiles', ref => ref.where('userUid', '==', user.uid))
@@ -43,6 +49,7 @@ export class ProfileFirestoreService implements ProfileService {
       take(1),
     ).subscribe((profile: Profile) => {
       this.state.dispatch(new ProfileActions.FetchFromBackend(profile));
+      this.state.dispatch(new UI.StopLoading());
     });
   }
 

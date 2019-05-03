@@ -3,7 +3,7 @@ import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
@@ -16,6 +16,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     lastName: new FormControl('', Validators.required)
   });
 
+  isLoading: Observable<boolean>;
+
   protected profileSubscription: Subscription;
 
   constructor(
@@ -24,6 +26,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    this.isLoading = this.profileService.getLoadingState();
     this.profileSubscription = this.profileService.getProfile()
       .subscribe((p: Profile) => {
         if (p) {

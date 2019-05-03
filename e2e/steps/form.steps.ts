@@ -28,12 +28,16 @@ Then('I see {string} button', (label: string, cb) => {
   });
 });
 
-Then(
-  'I see validation message {string} for {string}',
-  (msg: string, label: string, cb) => {
-    form.getValidationMsgFor(label).then((actualMsg: string) => {
-      expect(actualMsg).to.be.eq(msg);
-      cb();
-    });
-  }
-);
+Then('I see validation message {string} for {string}', (msg: string, label: string, cb) => {
+  form.getValidationMsgFor(label).then((actualMsg: string) => {
+    expect(actualMsg).to.be.eq(msg);
+    cb();
+  });
+});
+
+Then('I wait until see {string} button', (label: string, cb) => {
+  form.waitUntilSeeButton(label).then((present: boolean) => {
+    expect(present).to.be.eq(true);
+    cb();
+  });
+});

@@ -11,6 +11,8 @@ Feature: Log Out
     And I enter "secret" into the field "Password"
     And I press button "Sign In"
     And I am navigated on page "profile"
+    And I see header "Profile"
+    And I wait until see "Save" button
     And I click menu button
     And I see main menu with item "Log Out"
     And I click main menu item "Log Out"

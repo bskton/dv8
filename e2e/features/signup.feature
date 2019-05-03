@@ -2,7 +2,7 @@ Feature: Sign Up
 
   A user should be able to sign up to use all available features.
 
-  @page @user @form @message
+  @page @user @form @message @browser
   Scenario: Successfully sign up using email and password
     Given I start new browser
     And I am on page "signup"
@@ -13,8 +13,7 @@ Feature: Sign Up
     And I press button "Sign Up"
     Then I am navigated on page "profile"
     And I wait until see header "Profile"
-    Then I see success message "Your account has been successfully created."
-    And I see message "Please check your e-mail and activate your account."
+    And I wait until see "Save" button
 
   @page @user @form @message @browser
   Scenario: Show error message if email was already used by another user

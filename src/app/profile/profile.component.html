@@ -16,8 +16,9 @@
         formControlName="lastName">
     </mat-form-field>
     <div>
-      <button mat-raised-button color="primary" type="submit"
+      <button mat-raised-button color="primary" type="submit" *ngIf="!(isLoading | async)"
         [disabled]="!profileForm.valid || !profileForm.dirty">Save</button>
     </div>
   </form>
+  <mat-spinner *ngIf="(isLoading | async)" [diameter]="36"></mat-spinner>
 </section>

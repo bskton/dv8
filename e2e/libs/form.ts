@@ -1,4 +1,4 @@
-import { by, element } from 'protractor';
+import { browser, by, element, ExpectedConditions } from 'protractor';
 
 export class Form {
   enterValueIntoField(value: string, field: string) {
@@ -21,5 +21,9 @@ export class Form {
     return element(
       by.css('.form-input-' + label.toLowerCase() + ' mat-error')
     ).getText();
+  }
+
+  waitUntilSeeButton(label: string) {
+    return browser.wait(ExpectedConditions.visibilityOf(element(by.buttonText(label))), 5000);
   }
 }

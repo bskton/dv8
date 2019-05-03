@@ -5,4 +5,4 @@ Feature: Home page
   @page @form
   Scenario: Open home page and see button
     Given I am on page ""
-    Then I see "Click me!" button
+    Then I see "DV8" link

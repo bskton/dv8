@@ -23,8 +23,16 @@ export class Page {
     return browser.refresh();
   }
 
+  seeHeader() {
+    return element(by.tagName('h1')).getText();
+  }
+
   seeLink(label: string) {
     return element(by.linkText(label)).getText();
+  }
+
+  seeSpinner() {
+    return element(by.tagName('mat-spinner')).isPresent();
   }
 
   waitUntilSeeHeader() {
