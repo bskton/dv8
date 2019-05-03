@@ -1,4 +1,4 @@
-import { Given, When, Then, Before } from 'cucumber';
+import { Then, Before } from 'cucumber';
 import { expect } from 'chai';
 
 import { Message } from '../libs/message';

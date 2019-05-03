@@ -4,7 +4,7 @@ import { Auth } from '../libs/auth';
 
 let auth: Auth;
 
-Before('@user',() => {
+Before('@user', () => {
   auth = new Auth();
   auth.init();
 });

@@ -145,6 +145,34 @@
           }
         }
       }
+    },
+    "dv8-e2e-cucumber": {
+      "root": "e2e-cucumber/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e-cucumber/protractor.conf.js",
+            "devServerTarget": "dv8:serve:e2e",
+            "port": 4201
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "dv8:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "e2e-cucumber/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "dv8"
