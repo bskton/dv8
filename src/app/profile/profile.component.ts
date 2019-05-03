@@ -1,19 +1,22 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit } from '@angular/core';
 import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
   profileForm = new FormGroup({
     firstName: new FormControl('', Validators.required),
     lastName: new FormControl('', Validators.required)
   });
+
+  protected profileSubscription: Subscription;
 
   constructor(
     @Inject('ProfileService') private profileService: ProfileService,
@@ -21,10 +24,13 @@ export class ProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.profileService.init()
-      .subscribe((profile: Profile) => {
-        this.profileForm.patchValue(profile);
+    this.profileSubscription = this.profileService.getProfile()
+      .subscribe((p: Profile) => {
+        if (p) {
+          this.profileForm.patchValue(p);
+        }
       });
+    this.profileService.init();
   }
 
   onSubmit() {
@@ -34,7 +40,11 @@ export class ProfileComponent implements OnInit {
         this.profileForm.reset(this.profileForm.value);
       })
       .catch(() => {
-        this.snackbar.open('Can not update profile. Please try again later.', null);
+        this.snackbar.open('Can not update profileSnapshot. Please try again later.', null);
       });
+  }
+
+  ngOnDestroy() {
+    this.profileSubscription.unsubscribe();
   }
 }
