@@ -1,5 +1,23 @@
 <section>
   <h1>Profile</h1>
-  <div>First Name: {{ (profile | async)?.firstName }}</div>
-  <div>Last Name: {{ (profile | async)?.lastName }}</div>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="First Name"
+        formControlName="firstName">
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Last Name"
+        formControlName="lastName">
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary" type="submit"
+        [disabled]="!profileForm.valid || !profileForm.dirty">Save</button>
+    </div>
+  </form>
 </section>

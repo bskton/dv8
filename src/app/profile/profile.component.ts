@@ -1,8 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-
 import { ProfileService } from './profile.service';
 import { Profile } from './profile.model';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -10,11 +9,22 @@ import { Profile } from './profile.model';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  profile: Observable<Profile> | null = null;
+  profileForm = new FormGroup({
+    firstName: new FormControl('', Validators.required),
+    lastName: new FormControl('', Validators.required)
+  });
 
   constructor(@Inject('ProfileService') private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.profile = this.profileService.init();
+    this.profileService.init()
+      .subscribe((profile: Profile) => {
+        this.profileForm.patchValue(profile);
+      });
+  }
+
+  onSubmit() {
+    console.log(this.profileForm);
+    this.profileForm.reset(this.profileForm.value);
   }
 }

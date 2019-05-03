@@ -3,7 +3,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './material.module';
 import { NgModule } from '@angular/core';
 
@@ -42,6 +42,7 @@ import { NewsService } from './news.service';
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
+    ReactiveFormsModule,
     StoreModule.forRoot(reducers),
   ],
   providers: [
