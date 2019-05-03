@@ -1,8 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NgForm } from '@angular/forms';
 
-import { StoryService } from '../stories/story.service';
+import { ProfileService } from './profile.service';
+import { Profile } from './profile.model';
 
 @Component({
   selector: 'app-profile',
@@ -10,15 +10,11 @@ import { StoryService } from '../stories/story.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  stories: Observable<any>;
+  profile: Observable<Profile> | null = null;
 
-  constructor(@Inject('StoryService') private storyService: StoryService) { }
+  constructor(@Inject('ProfileService') private profileService: ProfileService) { }
 
   ngOnInit() {
-    this.stories = this.storyService.init();
-  }
-
-  onSubmit(f: NgForm) {
-    console.log(f.value);
+    this.profile = this.profileService.init();
   }
 }

@@ -20,6 +20,7 @@ import { SignupComponent } from './signup/signup.component';
 import { StoryNgrxService } from './stories/story-ngrx.service';
 import { reducers } from './app.reducer';
 import { environment } from '../environments/environment';
+import { ProfileFirestoreService } from './profile/profile-firestore.service';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,10 @@ import { environment } from '../environments/environment';
     {
       provide: 'AuthService',
       useClass: environment.authServiceType
+    },
+    {
+      provide: 'ProfileService',
+      useClass: ProfileFirestoreService
     },
     {
       provide: 'StoryService',
