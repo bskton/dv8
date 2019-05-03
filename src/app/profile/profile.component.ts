@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         this.profileForm.reset(this.profileForm.value);
       })
       .catch(() => {
-        this.snackbar.open('Can not update profileSnapshot. Please try again later.', null);
+        this.snackbar.open('Can not update profile. Please try again later.', null);
       });
   }
 
