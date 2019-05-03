@@ -1,5 +1,24 @@
 <section>
   <h1>Profile</h1>
+  <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+    <mat-form-field>
+      <input
+        matInput
+        type="text"
+        placeholder="Title"
+        ngModel
+        name="title"
+        required>
+    </mat-form-field>
+    <div>
+      <button mat-raised-button color="primary">Save</button>
+    </div>
+  </form>
   <p class="msg-success">Your account has been successfully created.</p>
   <p class="msg-check-email">Please check your e-mail and activate your account.</p>
 </section>
+
+<div>Stories</div>
+<div *ngFor="let story of (stories | async)">
+  {{ story.title }}
+</div>

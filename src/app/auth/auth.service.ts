@@ -1,11 +1,10 @@
 import { AuthData } from './auth-data.model';
-import { User } from './user.model';
 import { Observable } from 'rxjs';
 
 export interface AuthService {
   initAuthState(): Observable<boolean>;
   confirmPasswordReset(code: string, password: string);
-  getUser(): User;
+  getUser(): Observable<any>;
   isAuthenticated(): Observable<boolean>;
   login(authData: AuthData): void;
   logout(): void;

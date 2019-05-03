@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 
-import { AuthData } from './auth-data.model';
-import { AuthService } from './auth.service';
-import { User } from './user.model';
 import * as Auth from './auth.actions';
 import * as UI from '../ui.actions';
 import * as fromApp from '../app.reducer';
+import { AuthData } from './auth-data.model';
+import { AuthService } from './auth.service';
+import { User } from './user.model';
 import { concatMap, take, tap } from 'rxjs/operators';
 
 @Injectable()
@@ -47,8 +47,8 @@ export class FirebaseAuthService implements AuthService {
       .catch(error => console.log(error)); // TODO: Remove
   }
 
-  getUser(): User {
-    return {...this.user};
+  getUser(): Observable<{}> {
+    return this.afAuth.user;
   }
 
   isAuthenticated(): Observable<boolean> {
