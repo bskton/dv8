@@ -17,6 +17,8 @@ export class AppComponent implements OnInit {
 
   env = environment.env;
 
+  news: Observable<{}[]>;
+
   constructor(@Inject('AuthService') private authService: AuthService) {}
 
   ngOnInit() {

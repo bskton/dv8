@@ -21,6 +21,7 @@ import { StoryNgrxService } from './stories/story-ngrx.service';
 import { reducers } from './app.reducer';
 import { environment } from '../environments/environment';
 import { ProfileFirestoreService } from './profile/profile-firestore.service';
+import { NewsService } from './news.service';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { ProfileFirestoreService } from './profile/profile-firestore.service';
     {
       provide: 'StoryService',
       useClass: StoryNgrxService
-    }
+    },
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,5 @@
 <section>
-  <button mat-raised-button color="primary">Click me!</button>
+  <div *ngFor="let item of news | async">
+    <div>{{ item.title }}</div>
+  </div>
 </section>
